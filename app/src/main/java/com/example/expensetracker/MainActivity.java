@@ -7,6 +7,7 @@ import com.example.expensetracker.fragments.AddExpenseFragment;
 import com.example.expensetracker.fragments.HistoryFragment;
 import com.example.expensetracker.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.expensetracker.fragments.StatsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new HomeFragment();
             } else if (id == R.id.nav_add) {
                 fragment = new AddExpenseFragment();
+            } else if (id == R.id.nav_stats) {
+                fragment = new StatsFragment();
             } else {
                 fragment = new HistoryFragment();
             }

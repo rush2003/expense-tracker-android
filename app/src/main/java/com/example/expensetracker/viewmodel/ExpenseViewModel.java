@@ -1,5 +1,7 @@
 package com.example.expensetracker.viewmodel;
 
+import com.example.expensetracker.database.CategoryTotal;
+
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class ExpenseViewModel extends AndroidViewModel {
 
+    private final LiveData<List<CategoryTotal>> categoryTotals;
     private final ExpenseRepository repository;
     private final LiveData<List<Expense>> allExpenses;
     private final LiveData<Double> totalAmount;
@@ -19,6 +22,7 @@ public class ExpenseViewModel extends AndroidViewModel {
         repository = new ExpenseRepository(application);
         allExpenses = repository.getAllExpenses();
         totalAmount = repository.getTotalAmount();
+        categoryTotals = repository.getCategoryTotals();
     }
 
     public void insert(Expense expense) {
@@ -36,4 +40,9 @@ public class ExpenseViewModel extends AndroidViewModel {
     public LiveData<Double> getTotalAmount() {
         return totalAmount;
     }
+
+    public LiveData<List<CategoryTotal>> getCategoryTotals() {
+        return categoryTotals;
+    }
+
 }

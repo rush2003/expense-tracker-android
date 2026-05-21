@@ -25,4 +25,8 @@ public interface ExpenseDao {
 
     @Query("SELECT * FROM expenses WHERE category = :category")
     LiveData<List<Expense>> getExpensesByCategory(String category);
+
+    @Query("SELECT category, SUM(amount) as total FROM expenses GROUP BY category")
+    LiveData<List<CategoryTotal>> getCategoryTotals();
+
 }

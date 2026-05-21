@@ -1,4 +1,5 @@
 package com.example.expensetracker.repository;
+import com.example.expensetracker.database.CategoryTotal;
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
@@ -14,6 +15,7 @@ public class ExpenseRepository {
     private final ExpenseDao expenseDao;
     private final LiveData<List<Expense>> allExpenses;
     private final LiveData<Double> totalAmount;
+    private final LiveData<List<CategoryTotal>> categoryTotals;
     private final ExecutorService executorService;
 
     public ExpenseRepository(Application application) {
@@ -21,6 +23,7 @@ public class ExpenseRepository {
         expenseDao = database.expenseDao();
         allExpenses = expenseDao.getAllExpenses();
         totalAmount = expenseDao.getTotalAmount();
+        categoryTotals = expenseDao.getCategoryTotals();
         executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -38,5 +41,9 @@ public class ExpenseRepository {
 
     public LiveData<Double> getTotalAmount() {
         return totalAmount;
+    }
+
+    public LiveData<List<CategoryTotal>> getCategoryTotals() {
+        return categoryTotals;
     }
 }
