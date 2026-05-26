@@ -8,6 +8,8 @@ import com.example.expensetracker.fragments.HistoryFragment;
 import com.example.expensetracker.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.expensetracker.fragments.StatsFragment;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
+        controller.setAppearanceLightStatusBars(true);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
         // Load home fragment by default

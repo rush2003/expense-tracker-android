@@ -16,8 +16,8 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     private List<Expense> expenses = new ArrayList<>();
 
     public void setExpenses(List<Expense> expenses) {
-        this.expenses = expenses;
-        notifyItemRangeChanged(0, expenses.size());
+        this.expenses = new ArrayList<>(expenses);
+        notifyDataSetChanged();
     }
 
     @NonNull
