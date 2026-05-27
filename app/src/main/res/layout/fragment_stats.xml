@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background"
-    android:paddingTop="72dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp">
+    android:background="#6200EE">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Spending Stats"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/primary"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_no_data"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No data yet. Add some expenses first!"
-        android:textColor="@color/gray"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_marginTop="32dp"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pie_chart"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spending Stats"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:paddingLeft="16dp"
+            android:layout_marginBottom="4dp"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category breakdown"
+            android:textSize="14sp"
+            android:textColor="#FFFFFFAA"
+            android:paddingLeft="16dp"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No data yet. Add some expenses first!"
+            android:textColor="#FFFFFFAA"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/category_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</ScrollView>
