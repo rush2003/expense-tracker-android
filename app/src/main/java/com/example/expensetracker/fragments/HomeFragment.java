@@ -23,6 +23,7 @@ public class HomeFragment extends Fragment {
     private ExpenseViewModel viewModel;
     private TextView tvTotalAmount;
     private LinearLayout monthsContainer;
+    private LinearLayout emptyState;
 
     @Nullable
     @Override
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment {
 
         tvTotalAmount = view.findViewById(R.id.tv_total_amount);
         monthsContainer = view.findViewById(R.id.months_container);
+        emptyState = view.findViewById(R.id.empty_state);
 
         viewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
 
@@ -51,7 +53,15 @@ public class HomeFragment extends Fragment {
         // Distinct months
         viewModel.getDistinctMonths().observe(getViewLifecycleOwner(), months -> {
             monthsContainer.removeAllViews();
-            if (months == null || months.isEmpty()) return;
+
+            if (months == null || months.isEmpty()) {
+                emptyState.setVisibility(View.VISIBLE);
+                monthsContainer.setVisibility(View.GONE);
+                return;
+            }
+
+            emptyState.setVisibility(View.GONE);
+            monthsContainer.setVisibility(View.VISIBLE);
 
             String currentMonth = new SimpleDateFormat("MM-yyyy", Locale.getDefault()).format(new Date());
 
@@ -73,7 +83,6 @@ public class HomeFragment extends Fragment {
                     tvMonthStatus.setTextColor(android.graphics.Color.parseColor("#FFFFFFAA"));
                 }
 
-                // Observe total for each month
                 viewModel.getTotalAmountByMonth(month).observe(getViewLifecycleOwner(), total -> {
                     if (total != null) {
                         tvMonthTotal.setText("₹" + String.format("%.2f", total));
@@ -82,7 +91,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-                // Click to open month detail
                 monthCard.setOnClickListener(v -> {
                     Intent intent = new Intent(getContext(), MonthDetailActivity.class);
                     intent.putExtra("month", month);
