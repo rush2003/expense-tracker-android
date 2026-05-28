@@ -45,4 +45,20 @@ public class ExpenseViewModel extends AndroidViewModel {
         return categoryTotals;
     }
 
+    public LiveData<List<String>> getDistinctMonths() {
+        return repository.getDistinctMonths();
+    }
+
+    public LiveData<List<Expense>> getExpensesByMonth(String month) {
+        return repository.getExpensesByMonth(month);
+    }
+
+    public LiveData<Double> getTotalAmountByMonth(String month) {
+        return repository.getTotalAmountByMonth(month);
+    }
+
+    public LiveData<List<CategoryTotal>> getCategoryTotalsByMonth(String month) {
+        return repository.getCategoryTotalsByMonth(month);
+    }
+
 }

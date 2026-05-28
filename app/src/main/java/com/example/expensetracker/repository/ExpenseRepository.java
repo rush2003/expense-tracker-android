@@ -46,4 +46,20 @@ public class ExpenseRepository {
     public LiveData<List<CategoryTotal>> getCategoryTotals() {
         return categoryTotals;
     }
+
+    public LiveData<List<String>> getDistinctMonths() {
+        return expenseDao.getDistinctMonths();
+    }
+
+    public LiveData<List<Expense>> getExpensesByMonth(String month) {
+        return expenseDao.getExpensesByMonth(month);
+    }
+
+    public LiveData<Double> getTotalAmountByMonth(String month) {
+        return expenseDao.getTotalAmountByMonth(month);
+    }
+
+    public LiveData<List<CategoryTotal>> getCategoryTotalsByMonth(String month) {
+        return expenseDao.getCategoryTotalsByMonth(month);
+    }
 }
